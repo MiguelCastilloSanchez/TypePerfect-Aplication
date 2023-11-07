@@ -4,11 +4,30 @@
  */
 package domain;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Random;
+
 /**
  *
  * @author Miguel
  */
 public class WordsReader {
-    // Clase que lee los archivos con las palabras y devuelve listas con estos
-    private WordsReader(){}
-}
+    
+    public WordsReader(){
+        
+    }
+
+    public String[] getWords(String filePath) {
+        
+        String[] listOfWords = null;
+        try( BufferedReader fileReader = new BufferedReader(new FileReader(filePath))){
+        listOfWords = fileReader.lines().toArray(String[]::new);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listOfWords;
+    }
+
+    
+    }
