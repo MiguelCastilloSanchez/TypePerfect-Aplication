@@ -20,25 +20,14 @@ public class WordsReader {
 
     public String[] getWords(String filePath) {
         
-         String[] listOfWords = null;
+        String[] listOfWords = null;
         try( BufferedReader fileReader = new BufferedReader(new FileReader(filePath))){
         listOfWords = fileReader.lines().toArray(String[]::new);
-        this.randomizeWords(listOfWords);
         }catch(Exception e){
             e.printStackTrace();
         }
         return listOfWords;
-
     }
 
-    private void randomizeWords(String[] listOfWords){
-          Random random = new Random();
-          for (int i = listOfWords.length - 1; i > 0; i--)
-          {
-            int index = random.nextInt(i + 1);
-            String randomWord= listOfWords[index];
-            listOfWords[index] = listOfWords[i];
-            listOfWords[i] = randomWord;
-          }
-        }
+    
     }
