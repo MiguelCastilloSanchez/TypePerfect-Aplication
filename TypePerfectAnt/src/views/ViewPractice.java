@@ -63,13 +63,13 @@ public class ViewPractice extends javax.swing.JFrame {
 
         labelUserWordBefore.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         labelUserWordBefore.setForeground(new java.awt.Color(102, 102, 102));
-        labelUserWordBefore.setText("pool");
+        labelUserWordBefore.setText("");
 
         labelWordBefore.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
-        labelWordBefore.setText("pool");
+        labelWordBefore.setText("");
 
         labelWordActual.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
-        labelWordActual.setText("pool");
+        labelWordActual.setText("");
 
         labelCorrectIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/correct.png"))); // NOI18N
 
