@@ -67,6 +67,11 @@ public class ControllerViewPractice implements ActionListener{
             viewPractice.getLabelWordBefore().setVisible(false);
             viewPractice.getLabelUserWordBefore().setVisible(false);
         }
+        if(viewPractice.getButtonMenu() == event.getSource()){
+            this.viewPractice.dispose();
+            ViewStart view = new ViewStart();
+            ControllerViewStart controller = new ControllerViewStart(view);
+        }
     }
     
     private void setActionListenerToButtons(){

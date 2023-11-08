@@ -4,8 +4,7 @@
  */
 package test;
 
-import controllers.ControllerViewPractice;
-import domain.KeyboardListener;
+import controllers.*;
 import views.*;
 
 /**
@@ -18,8 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ViewPractice viewPractice = new ViewPractice();
-        KeyboardListener keyboardListener = new KeyboardListener();
-        ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener);
+        ViewStart view = new ViewStart();
+        ControllerViewStart controller = new ControllerViewStart(view);
     } 
 }
