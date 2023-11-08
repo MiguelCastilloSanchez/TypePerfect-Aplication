@@ -24,7 +24,7 @@ public class WordsReader {
     public String[] getWords(String filePath) {
         
         String[] listOfWords = null;
-        try(BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream("TypePerfectAnt/words/BothHands.txt"), StandardCharsets.UTF_8))){
+        try(BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))){
         listOfWords = fileReader.lines().toArray(String[]::new);
         }catch(Exception e){
             e.printStackTrace();
