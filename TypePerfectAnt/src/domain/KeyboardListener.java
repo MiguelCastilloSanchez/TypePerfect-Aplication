@@ -3,22 +3,39 @@ package domain;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class KeyboardListener extends KeyAdapter{
+/**
+ * La clase "KeyboardListener" vigila si se presionó
+ * la tecla Enter.
+ */
+public class KeyboardListener extends KeyAdapter {
     private boolean wasEnterPressed;
 
-    
-
-    public void keyPressed(KeyEvent keyEvent){
-        if(keyEvent.getKeyCode() == keyEvent.VK_ENTER){
+    /**
+     * La función "keyPressed" establece si se presionó la tecla "Enter"
+     * 
+     * @param keyEvent El parámetro es un objeto "KeyEvent" que representa
+     *                 la tecla presionada
+     */
+    public void keyPressed(KeyEvent keyEvent) {
+        // Si se presionó la tecla "Enter"
+        if (keyEvent.getKeyCode() == keyEvent.VK_ENTER) {
             this.wasEnterPressed = true;
         }
     }
 
-    public void resetWasEnterPressed(){
+    /**
+     * Establece que no se presión la tecla "Enter".
+     */
+    public void resetWasEnterPressed() {
         this.wasEnterPressed = false;
     }
 
-    public boolean getWasEnterPressed(){
+    /**
+     * La función "getWasEnterPressed" dice si se presionó o no la tecla "Enter".
+     * 
+     * @return la función regresa el valor de "wasEnterPressed".
+     */
+    public boolean getWasEnterPressed() {
         return this.wasEnterPressed;
     }
 

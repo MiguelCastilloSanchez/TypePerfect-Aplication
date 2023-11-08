@@ -4,8 +4,6 @@
  */
 package controllers;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -17,31 +15,44 @@ import views.*;
  *
  * @author Miguel
  */
-public class ControllerViewPractice implements ActionListener{
+/**
+ * La clase "ControllerViewPractice" maneja las acciones del usuario y
+ * actualizar la vista "ViewPractice" en base a ellas.
+ */
+public class ControllerViewPractice implements ActionListener {
     private ViewPractice viewPractice;
     private KeyboardListener keyboardListener;
     private boolean wasStartPressed = false;
     private Random random = new Random();
     private String[] listOfWords;
 
+    /**
+     * Constructor de la clase.
+     */
+    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener) {
+        this.viewPractice = viewPractice;
+        this.keyboardListener = keyboardListener;
 
-    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener){
-       this.viewPractice = viewPractice; 
-       this.keyboardListener = keyboardListener;
+        setActionListenerToButtons();
+        setListenersToTextField();
 
-       setActionListenerToButtons();
-       setListenersToTextField();
-       
-       initializeView();
-       
-       viewPractice.setVisible(true);
+        initializeView();
 
-       setListOfWords();
+        viewPractice.setVisible(true);
+
+        setListOfWords();
     }
-    
+
+    /**
+     * La función "actionPerformed" maneja las acciones del usuario en la ventana.
+     * 
+     * @param event El parámetro es un objeto "ActionEvent" que desencadenó el
+     *              método.
+     */
     @Override
-    public void actionPerformed(ActionEvent event){
-        if(viewPractice.getButtonStart() == event.getSource()){
+    public void actionPerformed(ActionEvent event) {
+        // Si se elige iniciar la prueba
+        if (viewPractice.getButtonStart() == event.getSource()) {
             viewPractice.getButtonStop().setVisible(true);
             viewPractice.getLabelWordBefore().setVisible(true);
             viewPractice.getLabelUserWordBefore().setVisible(true);
@@ -52,12 +63,13 @@ public class ControllerViewPractice implements ActionListener{
             int indexNextWord = random.nextInt(listOfWords.length);
             viewPractice.getLabelWordActual().setText(listOfWords[indexNextWord]);
         }
-        if(wasStartPressed){
-
+        // Si se ha iniciado la prueba
+        if (wasStartPressed) {
             this.viewPractice.getLabelWordActual().setVisible(true);
             enterPerformed(event);
         }
-        if(viewPractice.getButtonStop() == event.getSource()){
+        // Si se elige parar la prueba
+        if (viewPractice.getButtonStop() == event.getSource()) {
             wasStartPressed = false;
             viewPractice.getButtonStop().setVisible(false);
             viewPractice.getLabelWordActual().setText("");
@@ -67,25 +79,35 @@ public class ControllerViewPractice implements ActionListener{
             viewPractice.getLabelWordBefore().setVisible(false);
             viewPractice.getLabelUserWordBefore().setVisible(false);
         }
-        if(viewPractice.getButtonMenu() == event.getSource()){
+        // Si se elige ver el menú
+        if (viewPractice.getButtonMenu() == event.getSource()) {
             this.viewPractice.dispose();
             ViewStart view = new ViewStart();
             ControllerViewStart controller = new ControllerViewStart(view);
         }
     }
-    
-    private void setActionListenerToButtons(){
+
+    /**
+     * Añadé a cada botón un ActionListener.
+     */
+    private void setActionListenerToButtons() {
         this.viewPractice.getButtonMenu().addActionListener(this);
         this.viewPractice.getButtonStart().addActionListener(this);
         this.viewPractice.getButtonStop().addActionListener(this);
     }
 
-    private void setListenersToTextField(){
+    /**
+     * Añadé a cada campo de texto un ActionListener.
+     */
+    private void setListenersToTextField() {
         this.viewPractice.getFieldPractice().addKeyListener(this.keyboardListener);
         this.viewPractice.getFieldPractice().addActionListener(this);
     }
-    
-    private void initializeView(){
+
+    /**
+     * Inicializa la vista de la práctica.
+     */
+    private void initializeView() {
         this.viewPractice.getLabelCorrectIcon().hide();
         this.viewPractice.getLabelIncorrectIcon().hide();
         this.viewPractice.getLabelWordBefore().hide();
@@ -94,20 +116,27 @@ public class ControllerViewPractice implements ActionListener{
         this.viewPractice.getButtonStop().hide();
     }
 
-    private void enterPerformed(ActionEvent event){
-        if(this.keyboardListener.getWasEnterPressed()){
+    /**
+     * La función "enterPerformed" actualiza la interfaz con respecto a la respuesta
+     * del usuario.
+     * 
+     * @param event El parámetro es un objeto "ActionEvent" que desencadenó el
+     *              método.
+     */
+    private void enterPerformed(ActionEvent event) {
+        if (this.keyboardListener.getWasEnterPressed()) {
             String wordTyped = this.viewPractice.getFieldPractice().getText();
             String correctWord = this.viewPractice.getLabelWordActual().getText();
 
             viewPractice.getLabelCorrectIcon().setVisible(false);
             viewPractice.getLabelIncorrectIcon().setVisible(false);
 
-            if(wordTyped.equals(correctWord)){
+            if (wordTyped.equals(correctWord)) {
                 viewPractice.getLabelCorrectIcon().setVisible(true);
-            }else{
+            } else {
                 viewPractice.getLabelIncorrectIcon().setVisible(true);
             }
-           
+
             viewPractice.getLabelWordBefore().setText(correctWord);
             viewPractice.getLabelWordBefore().setVisible(true);
 
@@ -121,7 +150,10 @@ public class ControllerViewPractice implements ActionListener{
         }
     }
 
-    private void setListOfWords(){
+    /**
+     * Inicializa la lista de palabras
+     */
+    private void setListOfWords() {
         WordsReader listOfWordsToUse = new WordsReader();
         this.listOfWords = listOfWordsToUse.getWords("TypePerfectAnt/words/BothHands.txt");
     }
