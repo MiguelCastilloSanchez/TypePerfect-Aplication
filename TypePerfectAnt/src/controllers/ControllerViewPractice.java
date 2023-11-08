@@ -25,7 +25,7 @@ public class ControllerViewPractice implements ActionListener{
     private String[] listOfWords;
 
 
-    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener){
+    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener,String filePath){
        this.viewPractice = viewPractice; 
        this.keyboardListener = keyboardListener;
 
@@ -36,7 +36,7 @@ public class ControllerViewPractice implements ActionListener{
        
        viewPractice.setVisible(true);
 
-       setListOfWords();
+       setListOfWords(filePath);
     }
     
     @Override
@@ -121,8 +121,8 @@ public class ControllerViewPractice implements ActionListener{
         }
     }
 
-    private void setListOfWords(){
+    private void setListOfWords(String filePath){
         WordsReader listOfWordsToUse = new WordsReader();
-        this.listOfWords = listOfWordsToUse.getWords("TypePerfectAnt/words/BothHands.txt");
+        this.listOfWords = listOfWordsToUse.getWords(filePath);
     }
 }

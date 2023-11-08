@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import domain.KeyboardListener;
+import domain.WordsReader;
+import views.ViewConfiguration;
 import views.ViewPractice;
 import views.ViewStart;
 
@@ -17,6 +19,7 @@ import views.ViewStart;
  */
 public class ControllerViewStart implements ActionListener{
     private ViewStart view;
+    private String filePath = "";
 
     public ControllerViewStart(ViewStart view) {
         this.view = view;
@@ -32,8 +35,13 @@ public class ControllerViewStart implements ActionListener{
             this.view.dispose();
             ViewPractice viewPractice = new ViewPractice();
             KeyboardListener keyboardListener = new KeyboardListener();
-            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener);
+            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener,filePath);
         }else if(this.view.getButtonConfig()== event.getSource()){
+            this.view.dispose();
+            ViewConfiguration viewConfiguration = new ViewConfiguration();
+            WordsReader modelWordsReader = new WordsReader();
+            ControllerViewConfiguration controllerViewConfiguration = new ControllerViewConfiguration(modelWordsReader,viewConfiguration);
+
             
         }else if(this.view.getButtonLogs() == event.getSource()){
             
@@ -45,5 +53,9 @@ public class ControllerViewStart implements ActionListener{
         this.view.getButtonPractice().addActionListener(this);
         this.view.getButtonConfig().addActionListener(this);
         this.view.getButtonLogs().addActionListener(this);
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }
