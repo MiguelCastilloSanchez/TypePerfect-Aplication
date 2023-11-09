@@ -8,19 +8,19 @@ import com.cds.typeperfectapp.views.*;
 import com.cds.typeperfectapp.model.*;
 
 public class ControllerViewConfiguration implements ActionListener{
-    WordsReader modelWordsReader = new WordsReader();
-    ViewConfiguration viewConfiguration = new ViewConfiguration();
-    ControllerViewPractice controllerViewPractice;
-    ViewStart viewStart = new ViewStart();
-    ControllerViewStart controllerViewStart = new ControllerViewStart(viewStart);
-    Boolean allButtonsSelected = false;
-    Boolean englishRight = false;
-    Boolean spanishRight = false;
-    Boolean englishLeft = false;
-    Boolean spanishLeft = false;
-    Boolean englishBoth = false;
-    Boolean spanishBoth = false;
-    String filePath = "";
+    private WordsReader modelWordsReader = new WordsReader();
+    private ViewConfiguration viewConfiguration = new ViewConfiguration();
+    private ControllerViewPractice controllerViewPractice;
+    private ViewStart viewStart = new ViewStart();
+    private ControllerViewStart controllerViewStart = new ControllerViewStart(viewStart);
+    private Boolean allButtonsSelected = false;
+    private Boolean englishRight = false;
+    private Boolean spanishRight = false;
+    private Boolean englishLeft = false;
+    private Boolean spanishLeft = false;
+    private Boolean englishBoth = false;
+    private Boolean spanishBoth = false;
+    private String filePath = "";
 
     public ControllerViewConfiguration(WordsReader modelWordsReader, ViewConfiguration viewConfiguration){
         this.modelWordsReader = modelWordsReader;
@@ -45,7 +45,7 @@ public class ControllerViewConfiguration implements ActionListener{
         checkSelection();
         if(e.getSource() == this.viewConfiguration.getButtonNext()){
             this.controllerViewStart.setFilePath(filePath);
-            System.out.println("Se ha guardado la configuaracion");
+            System.out.println("Se ha guardado la configuración");
         }
         if(e.getSource() == this.viewConfiguration.getButtonBack()){
             this.viewConfiguration.setVisible(false);
