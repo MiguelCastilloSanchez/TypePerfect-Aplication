@@ -54,10 +54,10 @@ public class ViewConfiguration extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         groupHands.add(buttonBoth);
-        buttonBoth.setIcon(new javax.swing.ImageIcon("src/main/resources/bothhands.jpeg")); // NOI18N
+        buttonBoth.setIcon(new javax.swing.ImageIcon("/resources/ambas_manos.png")); // NOI18N
 
         groupHands.add(buttonRight);
-        buttonRight.setIcon(new javax.swing.ImageIcon("src/main/resources/righthand.jpeg")); // NOI18N
+        buttonRight.setIcon(new javax.swing.ImageIcon("/resources/mano_derecha.png")); // NOI18N
         buttonRight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRightActionPerformed(evt);
@@ -65,7 +65,7 @@ public class ViewConfiguration extends javax.swing.JFrame {
         });
 
         groupHands.add(buttonLeft);
-        buttonLeft.setIcon(new javax.swing.ImageIcon("src/main/resources/lefthand.jpeg")); // NOI18N
+        buttonLeft.setIcon(new javax.swing.ImageIcon("/resources/mano_izquierda.png")); // NOI18N
 
         buttonNext.setText("Siguiente");
         buttonNext.setToolTipText("");

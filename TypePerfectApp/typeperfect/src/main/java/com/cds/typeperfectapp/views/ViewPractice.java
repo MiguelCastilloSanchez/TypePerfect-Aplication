@@ -41,7 +41,7 @@ public class ViewPractice extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelImage.setIcon(new javax.swing.ImageIcon("src/main/resources/rsz_manos_en_el_teclado.jpg")); 
+        labelImage.setIcon(new javax.swing.ImageIcon(("src/main/resources/rsz_manos_en_el_teclado.jpg"))); 
 
         buttonStop.setText("Parar");
 
