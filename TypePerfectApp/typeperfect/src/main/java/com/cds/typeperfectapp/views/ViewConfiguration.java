@@ -65,7 +65,7 @@ public class ViewConfiguration extends javax.swing.JFrame {
         });
 
         groupHands.add(buttonLeft);
-        buttonLeft.setIcon(new javax.swing.ImageIcon("src/main/resources/lefthand.jpeg"")); // NOI18N
+        buttonLeft.setIcon(new javax.swing.ImageIcon("src/main/resources/lefthand.jpeg")); // NOI18N
 
         buttonNext.setText("Siguiente");
         buttonNext.setToolTipText("");
