@@ -6,21 +6,32 @@ package com.cds.typeperfectapp.model;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Random;
 
 /**
  *
  * @author Miguel
  */
+/**
+ * La clase "WordsReader" regresa la lista de palabras
+ * escritas en un archivo.
+ */
 public class WordsReader {
     
+    /*
+     * Constructor de la clase.
+     */
     public WordsReader(){
-        
     }
 
+    /**
+     * La función "getWords" regresa las palabras contenidas en un archivo.
+     * 
+     * @param filePath El parámetro representa la ruta al archivo.
+     * 
+     * @return El método regresa la lista de palabras del archivo.
+     */
     public String[] getWords(String filePath) {
         
         String[] listOfWords = null;

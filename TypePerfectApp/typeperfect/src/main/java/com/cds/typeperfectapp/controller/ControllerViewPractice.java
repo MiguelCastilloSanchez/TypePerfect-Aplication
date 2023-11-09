@@ -4,8 +4,6 @@
  */
 package com.cds.typeperfectapp.controller;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -16,6 +14,10 @@ import com.cds.typeperfectapp.views.*;
  *
  * @author Miguel
  */
+/**
+ * La clase "ControllerViewPractice" maneja las acciones del usuario y
+ * actualizar la vista "ViewPractice" en base a ellas.
+ */
 public class ControllerViewPractice implements ActionListener{
     private ViewPractice viewPractice;
     private KeyboardListener keyboardListener;
@@ -23,7 +25,9 @@ public class ControllerViewPractice implements ActionListener{
     private Random random = new Random();
     private String[] listOfWords;
 
-
+    /**
+     * Constructor de la clase.
+     */
     public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener,String filePath){
        this.viewPractice = viewPractice; 
        this.keyboardListener = keyboardListener;
@@ -38,8 +42,15 @@ public class ControllerViewPractice implements ActionListener{
        setListOfWords(filePath);
     }
     
+    /**
+     * La función "actionPerformed" maneja las acciones del usuario en la ventana.
+     * 
+     * @param event El parámetro es un objeto "ActionEvent" que desencadenó el
+     *              método.
+     */
     @Override
     public void actionPerformed(ActionEvent event){
+        // Si se elige iniciar la prueba
         if(viewPractice.getButtonStart() == event.getSource()){
             viewPractice.getButtonStop().setVisible(true);
             viewPractice.getLabelWordBefore().setVisible(true);
@@ -51,11 +62,12 @@ public class ControllerViewPractice implements ActionListener{
             int indexNextWord = random.nextInt(listOfWords.length);
             viewPractice.getLabelWordActual().setText(listOfWords[indexNextWord]);
         }
+        // Si se ha iniciado la prueba
         if(wasStartPressed){
-
             this.viewPractice.getLabelWordActual().setVisible(true);
             enterPerformed(event);
         }
+        // Si se elige parar la prueba
         if(viewPractice.getButtonStop() == event.getSource()){
             wasStartPressed = false;
             viewPractice.getButtonStop().setVisible(false);
@@ -66,6 +78,7 @@ public class ControllerViewPractice implements ActionListener{
             viewPractice.getLabelWordBefore().setVisible(false);
             viewPractice.getLabelUserWordBefore().setVisible(false);
         }
+        // Si se elige ver el menú
         if(viewPractice.getButtonMenu() == event.getSource()){
             this.viewPractice.dispose();
             ViewStart view = new ViewStart();
@@ -73,17 +86,26 @@ public class ControllerViewPractice implements ActionListener{
         }
     }
     
+    /**
+     * Añadé a cada botón un ActionListener.
+     */
     private void setActionListenerToButtons(){
         this.viewPractice.getButtonMenu().addActionListener(this);
         this.viewPractice.getButtonStart().addActionListener(this);
         this.viewPractice.getButtonStop().addActionListener(this);
     }
 
+    /**
+     * Añadé a cada campo de texto un ActionListener.
+     */
     private void setListenersToTextField(){
         this.viewPractice.getFieldPractice().addKeyListener(this.keyboardListener);
         this.viewPractice.getFieldPractice().addActionListener(this);
     }
     
+    /**
+     * Inicializa la vista de la práctica.
+     */
     private void initializeView(){
         this.viewPractice.getLabelCorrectIcon().hide();
         this.viewPractice.getLabelIncorrectIcon().hide();
@@ -93,7 +115,15 @@ public class ControllerViewPractice implements ActionListener{
         this.viewPractice.getButtonStop().hide();
     }
 
+    /**
+     * La función "enterPerformed" actualiza la interfaz con respecto a la respuesta
+     * del usuario.
+     * 
+     * @param event El parámetro es un objeto "ActionEvent" que desencadenó el
+     *              método.
+     */
     private void enterPerformed(ActionEvent event){
+        // Si se presionó la tecla "Enter"
         if(this.keyboardListener.getWasEnterPressed()){
             String wordTyped = this.viewPractice.getFieldPractice().getText();
             String correctWord = this.viewPractice.getLabelWordActual().getText();
@@ -101,6 +131,7 @@ public class ControllerViewPractice implements ActionListener{
             viewPractice.getLabelCorrectIcon().setVisible(false);
             viewPractice.getLabelIncorrectIcon().setVisible(false);
 
+            //Si la palabra es correcta
             if(wordTyped.equals(correctWord)){
                 viewPractice.getLabelCorrectIcon().setVisible(true);
             }else{
@@ -120,6 +151,9 @@ public class ControllerViewPractice implements ActionListener{
         }
     }
 
+    /**
+     * Inicializa la lista de palabras
+     */
     private void setListOfWords(String filePath){
         WordsReader listOfWordsToUse = new WordsReader();
         this.listOfWords = listOfWordsToUse.getWords(filePath);
