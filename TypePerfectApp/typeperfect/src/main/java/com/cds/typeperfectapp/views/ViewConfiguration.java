@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.cds.typeperfectapp.views;
 
 import javax.swing.ButtonGroup;
@@ -10,10 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 
-/**
- *
- * @author Miguel
- */
+
 public class ViewConfiguration extends javax.swing.JFrame {
     
     /**
