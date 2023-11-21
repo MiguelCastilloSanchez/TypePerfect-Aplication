@@ -1,4 +1,3 @@
-
 package com.cds.typeperfectapp.controller;
 
 import java.awt.event.ActionEvent;
@@ -10,7 +9,7 @@ import com.cds.typeperfectapp.views.*;
 
 public class ControllerViewStart implements ActionListener{
     private ViewStart view;
-    private String filePath = "";
+    private String filePath = "src/main/resources/words/BothHands.txt";
 
     public ControllerViewStart(ViewStart view) {
         this.view = view;
