@@ -92,7 +92,7 @@ public class ControllerViewConfiguration implements ActionListener{
 
     public void chooseWords(){
         if(this.englishBoth == true){
-            this.filePath = "src/main/resources/words/BothHandsEnglisht.txt";
+            this.filePath = "src/main/resources/words/BothHandsEnglish.txt";
         }
         if(this.spanishBoth == true){
             this.filePath = "src/main/resources/words/BothHands.txt";

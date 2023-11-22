@@ -5,22 +5,22 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class LogsReader {
+public class ResultsReader {
 
     private int totalWords = 0;
     private int correctWords = 0;
-    private String logsFilePath = "src/main/resources/logs.csv";
+    private final String RESULTS_FILEPATH = "src/main/resources/logs.csv";
 
-    public LogsReader() {
-        getLogs();
+    public ResultsReader() {
+        getResults();
     }
 
-    public void getLogs() {
+    public void getResults() {
         String SEPARATOR = ", ";
         BufferedReader bufferReader = null;
 
         try {
-            bufferReader = new BufferedReader(new FileReader(logsFilePath));
+            bufferReader = new BufferedReader(new FileReader(RESULTS_FILEPATH));
             String linea = bufferReader.readLine();
             while (linea != null) {
                 String[] data = linea.split(SEPARATOR);
@@ -41,9 +41,9 @@ public class LogsReader {
         }
     }
 
-    public void updateLogs(int totalWords, int correctWords) {
+    public void updateResults(int totalWords, int correctWords) {
         try {
-            FileWriter writer = new FileWriter(logsFilePath, false);
+            FileWriter writer = new FileWriter(RESULTS_FILEPATH, false);
 
             writer.write("TotalWords, " + totalWords + "\n");
             writer.write("CorrectWords, " + correctWords + "\n");

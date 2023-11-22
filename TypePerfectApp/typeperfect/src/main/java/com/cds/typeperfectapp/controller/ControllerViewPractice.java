@@ -2,6 +2,8 @@ package com.cds.typeperfectapp.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Date;
 import java.util.Random;
 import com.cds.typeperfectapp.model.*;
 import com.cds.typeperfectapp.views.*;
@@ -11,16 +13,17 @@ public class ControllerViewPractice implements ActionListener {
     private ViewPractice viewPractice;
     private KeyboardListener keyboardListener;
     private boolean wasStartPressed = false;
+    private String filepath;
     private Random random = new Random();
     private String[] listOfWords;
-    private LogsReader logsReader = new LogsReader();
+    private ResultsReader resultsReader = new ResultsReader();
     private int totalWords = 0;
     private int correctWords = 0;
 
     public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener, String filePath) {
         this.viewPractice = viewPractice;
         this.keyboardListener = keyboardListener;
-
+        this.filepath = filePath;
         setActionListenerToButtons();
         setListenersToTextField();
 
@@ -60,7 +63,8 @@ public class ControllerViewPractice implements ActionListener {
             viewPractice.getLabelWordBefore().setVisible(false);
             viewPractice.getLabelUserWordBefore().setVisible(false);
 
-            logsReader.updateLogs(totalWords, correctWords);
+            createNewLog();
+            resultsReader.updateResults(totalWords, correctWords);
             showResults();
         }
         if (viewPractice.getButtonMenu() == event.getSource()) {
@@ -68,7 +72,7 @@ public class ControllerViewPractice implements ActionListener {
             ViewStart view = new ViewStart();
             ControllerViewStart controller = new ControllerViewStart(view);
 
-            logsReader.updateLogs(totalWords, correctWords);
+            resultsReader.updateResults(totalWords, correctWords);
         }
     }
 
@@ -129,5 +133,19 @@ public class ControllerViewPractice implements ActionListener {
     private void showResults() {
         ViewResults viewLogs = new ViewResults();
         ControllerViewResults controllerViewResults = new ControllerViewResults(viewLogs);
+    }
+
+    private void createNewLog(){
+        Log log = new Log(1, new Date(), totalWords, 60);
+            log.setCorrectWords(correctWords);
+            log.setIncorrectWords(totalWords-correctWords);
+            log.setSelectedHand(this.filepath);
+        DaoLogs daoLogs = new DaoLogs("src/main/resources/logs.txt");
+        try {
+            daoLogs.saveLog(log);
+            System.out.println("se creó un nuevo log");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

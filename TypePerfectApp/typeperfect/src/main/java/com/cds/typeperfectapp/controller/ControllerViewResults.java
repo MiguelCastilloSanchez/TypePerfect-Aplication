@@ -1,41 +1,41 @@
 package com.cds.typeperfectapp.controller;
 
-import com.cds.typeperfectapp.model.LogsReader;
+import com.cds.typeperfectapp.model.ResultsReader;
 import com.cds.typeperfectapp.views.ViewResults;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControllerViewResults implements ActionListener {
-    private ViewResults viewLogs;
-    private LogsReader logsReader = new LogsReader();
-    private int totalWords = logsReader.getTotalWords();
-    private int correctWords = logsReader.getCorrectWords();
+    private ViewResults viewResults;
+    private ResultsReader resultsReader = new ResultsReader();
+    private int totalWords = resultsReader.getTotalWords();
+    private int correctWords = resultsReader.getCorrectWords();
 
-    public ControllerViewResults(ViewResults viewLogs) {
-        this.viewLogs = viewLogs;
+    public ControllerViewResults(ViewResults viewResults) {
+        this.viewResults = viewResults;
 
         setActionListenerToButtons();
 
         initializeView();
 
-        viewLogs.setVisible(true);
+        viewResults.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if (viewLogs.getButtonAccept() == event.getSource()) {
-            this.viewLogs.dispose();
+        if (viewResults.getButtonAccept() == event.getSource()) {
+            this.viewResults.dispose();
         }
     }
 
     private void setActionListenerToButtons() {
-        this.viewLogs.getButtonAccept().addActionListener(this);
+        this.viewResults.getButtonAccept().addActionListener(this);
     }
 
     private void initializeView() {
-        viewLogs.getLabelTotalWords().setText(String.valueOf(totalWords));
-        viewLogs.getLabelCorrectWords().setText(String.valueOf(correctWords));
-        viewLogs.getLabelPercentage().setText(String.valueOf(calculatePercentage()) + "%");
+        viewResults.getLabelTotalWords().setText(String.valueOf(totalWords));
+        viewResults.getLabelCorrectWords().setText(String.valueOf(correctWords));
+        viewResults.getLabelPercentage().setText(String.valueOf(calculatePercentage()) + "%");
     }
 
     public double calculatePercentage() {

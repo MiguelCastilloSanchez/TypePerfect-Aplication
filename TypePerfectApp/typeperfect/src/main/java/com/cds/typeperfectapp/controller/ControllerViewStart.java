@@ -34,7 +34,9 @@ public class ControllerViewStart implements ActionListener{
 
             
         }else if(this.view.getButtonLogs() == event.getSource()){
-            
+            this.view.dispose();
+            ViewLogs viewLogs = new ViewLogs();
+            ControllerViewLogs controllerViewLogs = new ControllerViewLogs(viewLogs);
         }
     }
     
