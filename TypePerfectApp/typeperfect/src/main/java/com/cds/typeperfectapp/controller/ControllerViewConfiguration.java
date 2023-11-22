@@ -20,6 +20,8 @@ public class ControllerViewConfiguration implements ActionListener{
     private Boolean englishBoth = false;
     private Boolean spanishBoth = false;
     private String filePath = "";
+    private String handSelected;
+    private int timeSelected;
 
     public ControllerViewConfiguration(WordsReader modelWordsReader, ViewConfiguration viewConfiguration){
         this.modelWordsReader = modelWordsReader;
@@ -44,6 +46,7 @@ public class ControllerViewConfiguration implements ActionListener{
         checkSelection();
         if(e.getSource() == this.viewConfiguration.getButtonNext()){
             this.controllerViewStart.setFilePath(filePath);
+            this.controllerViewStart.setHandSelected(handSelected);
             System.out.println("Se ha guardado la configuración");
         }
         if(e.getSource() == this.viewConfiguration.getButtonBack()){
@@ -93,21 +96,28 @@ public class ControllerViewConfiguration implements ActionListener{
     public void chooseWords(){
         if(this.englishBoth == true){
             this.filePath = "src/main/resources/words/BothHandsEnglish.txt";
+            this.handSelected = "Ambas Manos";
+            
         }
         if(this.spanishBoth == true){
             this.filePath = "src/main/resources/words/BothHands.txt";
+            this.handSelected = "Ambas Manos";
         }
         if(this.englishLeft == true){
             this.filePath = "src/main/resources/words/LeftHandEnglish.txt";
+            this.handSelected = "Mano Izquierda";
         }
         if(this.spanishLeft == true){
             this.filePath = "src/main/resources/words/LeftHand.txt";
+            this.handSelected = "Mano Izquierda";
         }
         if(this.englishRight == true){
             this.filePath = "src/main/resources/words/RightHandEnglish.txt";
+             this.handSelected = "Mano Derecha";
         }
         if(this.spanishRight == true){
             this.filePath = "src/main/resources/words/RightHand.txt";
+            this.handSelected = "Mano Derecha";
         }
     }
 }

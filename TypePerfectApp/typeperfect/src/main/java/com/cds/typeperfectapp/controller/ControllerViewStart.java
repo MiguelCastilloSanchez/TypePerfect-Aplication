@@ -10,7 +10,8 @@ import com.cds.typeperfectapp.views.*;
 public class ControllerViewStart implements ActionListener{
     private ViewStart view;
     private String filePath = "src/main/resources/words/BothHands.txt";
-
+    private String handSelected = "Ambas Manos";
+    private int timeSelected;
     public ControllerViewStart(ViewStart view) {
         this.view = view;
         this.view.setVisible(true);
@@ -26,6 +27,9 @@ public class ControllerViewStart implements ActionListener{
             ViewPractice viewPractice = new ViewPractice();
             KeyboardListener keyboardListener = new KeyboardListener();
             ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener,filePath);
+            controllerViewPractice.setHandSelected(handSelected);
+
+
         }else if(this.view.getButtonConfig()== event.getSource()){
             this.view.dispose();
             ViewConfiguration viewConfiguration = new ViewConfiguration();
@@ -50,4 +54,15 @@ public class ControllerViewStart implements ActionListener{
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
+
+    public void setHandSelected(String handSelected) {
+        this.handSelected = handSelected;
+    }
+
+    public void setTimeSelected(int timeSelected) {
+        this.timeSelected = timeSelected;
+    }
+
+    
+    
 }

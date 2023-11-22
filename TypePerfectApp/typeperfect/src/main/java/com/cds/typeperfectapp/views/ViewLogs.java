@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views;
+package com.cds.typeperfectapp.views;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -49,7 +49,7 @@ public class ViewLogs extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextFieldHandSelect = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldWordMinute = new javax.swing.JTextField();
+        jTextFieldWordAccuracy = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLogTest = new javax.swing.JTable();
@@ -160,12 +160,12 @@ public class ViewLogs extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Palabras por minuto");
+        jLabel7.setText("Porcentaje de aciertos");
 
-        jTextFieldWordMinute.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextFieldWordMinute.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldWordAccuracy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextFieldWordAccuracy.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jLabel8.setText("x min");
+        jLabel8.setText("%");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -191,7 +191,7 @@ public class ViewLogs extends javax.swing.JFrame {
                     .addComponent(jTextFieldHandSelect)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldWordMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldWordAccuracy, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(67, 67, 67))
@@ -226,7 +226,7 @@ public class ViewLogs extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jProgressBarBadWords, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldWordMinute)
+                        .addComponent(jTextFieldWordAccuracy)
                         .addComponent(jLabel8)))
                 .addGap(49, 49, 49))
         );
@@ -266,8 +266,8 @@ public class ViewLogs extends javax.swing.JFrame {
                 .addGap(159, 159, 159)
                 .addComponent(jButtonSelectLog)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(202, 202, 202))
+                .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,7 +348,7 @@ public class ViewLogs extends javax.swing.JFrame {
     }
 
     public JTextField getjTextFieldWordMinute() {
-        return jTextFieldWordMinute;
+        return jTextFieldWordAccuracy;
     }
 
     public JLabel getjTextNumberWords() {
@@ -362,6 +362,10 @@ public class ViewLogs extends javax.swing.JFrame {
     public JButton getButtonBack() {
         return buttonBack;
     }
+     public javax.swing.JTextField getjTextFieldWordAccuracy() {
+        return jTextFieldWordAccuracy;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
@@ -383,8 +387,10 @@ public class ViewLogs extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableLogTest;
     private javax.swing.JTextField jTextFieldHandSelect;
-    private javax.swing.JTextField jTextFieldWordMinute;
+    private javax.swing.JTextField jTextFieldWordAccuracy;
     private javax.swing.JLabel jTextNumberWords;
     private javax.swing.JLabel jTextTestTime;
     // End of variables declaration//GEN-END:variables
+
+   
 }

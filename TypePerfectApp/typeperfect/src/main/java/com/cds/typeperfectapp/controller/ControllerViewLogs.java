@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import com.cds.typeperfectapp.model.DaoLogs;
 import com.cds.typeperfectapp.model.Log;
 import com.cds.typeperfectapp.views.ViewLogs;
+import com.cds.typeperfectapp.views.ViewStart;
 
 /**
  *
@@ -39,7 +40,7 @@ public class ControllerViewLogs implements ActionListener{
         } catch (IOException ex) {
            System.out.println("Error en guardar en lista logs: Controlador");
         }
-        
+        this.viewLog.getButtonBack().addActionListener(this);
         this.viewLog.getjButtonSelectLog().addActionListener(this);
     }
 
@@ -64,17 +65,21 @@ public class ControllerViewLogs implements ActionListener{
                      String handSelectString = selectedLog.getSelectedHand();
                      int percentCorrect = (selectedLog.getCorrectWords() * 100) / selectedLog.getWordCount();
                      int percentIncorrect = 100 - percentCorrect;
-                     String wordMinuteString = String.valueOf(selectedLog.getWordsPerMinute());
                      
                      this.viewLog.getjTextNumberWords().setText(wordCountString);
                      this.viewLog.getjTextTestTime().setText(timeString);
                      this.viewLog.getjTextFieldHandSelect().setText(handSelectString);
                      this.viewLog.getjProgressBarRightWords().setValue(percentCorrect);
                      this.viewLog.getjProgressBarBadWords().setValue(percentIncorrect);
-                     this.viewLog.getjTextFieldWordMinute().setText(wordMinuteString); 
+                     this.viewLog.getjTextFieldWordAccuracy().setText(String.valueOf(percentCorrect)); 
                 }
             }
             this.updateTable(this.testList);
+       }
+       if (this.viewLog.getButtonBack() == event.getSource()){
+            this.viewLog.dispose();
+            ViewStart viewStart = new ViewStart();
+            ControllerViewStart controllerViewStart = new ControllerViewStart(viewStart);
        }
        
     }

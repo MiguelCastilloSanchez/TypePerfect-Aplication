@@ -29,6 +29,7 @@ public class DaoLogs {
 
     public void saveLog(Log log) throws IOException {
         ArrayList<Log> logs = this.loadLogs();
+        log.setTestNumber(createNewUniqueID());
         logs.add(log);
         
         try (FileWriter fileWriter = new FileWriter(filePath, false);
@@ -43,6 +44,17 @@ public class DaoLogs {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private int createNewUniqueID() throws FileNotFoundException, IOException{
+        ArrayList<Log> logs = this.loadLogs();
+        ArrayList<Integer> idList = new ArrayList<>();
+
+        for (Log log : logs) {
+            idList.add(log.getTestNumber());
+        }
+        int newID = idList.get(idList.size()-1)+1;
+        return newID;
     }
 
     public ArrayList<Log> loadLogs() throws FileNotFoundException, IOException {

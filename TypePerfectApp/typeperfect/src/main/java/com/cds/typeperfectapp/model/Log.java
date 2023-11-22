@@ -17,8 +17,7 @@ public class Log {
     private String selectedHand; 
     private int wordsPerMinute;
     
-    public Log(int testNumber, Date dateAndTime, int wordCount, int testDuration) {
-        this.testNumber = testNumber;
+    public Log(Date dateAndTime, int wordCount, int testDuration) {
         this.dateAndTime = dateAndTime;
         this.wordCount = wordCount;
         this.testDuration = testDuration;

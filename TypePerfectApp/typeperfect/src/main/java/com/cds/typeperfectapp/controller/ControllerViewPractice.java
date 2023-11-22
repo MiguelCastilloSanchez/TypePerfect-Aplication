@@ -19,6 +19,9 @@ public class ControllerViewPractice implements ActionListener {
     private ResultsReader resultsReader = new ResultsReader();
     private int totalWords = 0;
     private int correctWords = 0;
+    private String handSelected;
+    private int timeSelected;
+    
 
     public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener, String filePath) {
         this.viewPractice = viewPractice;
@@ -136,10 +139,10 @@ public class ControllerViewPractice implements ActionListener {
     }
 
     private void createNewLog(){
-        Log log = new Log(1, new Date(), totalWords, 60);
+        Log log = new Log(new Date(), totalWords, 60);
             log.setCorrectWords(correctWords);
             log.setIncorrectWords(totalWords-correctWords);
-            log.setSelectedHand(this.filepath);
+            log.setSelectedHand(this.handSelected);
         DaoLogs daoLogs = new DaoLogs("src/main/resources/logs.txt");
         try {
             daoLogs.saveLog(log);
@@ -147,5 +150,21 @@ public class ControllerViewPractice implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getHandSelected() {
+        return handSelected;
+    }
+
+    public void setHandSelected(String handSelected) {
+        this.handSelected = handSelected;
+    }
+
+    public int getTimeSelected() {
+        return timeSelected;
+    }
+
+    public void setTimeSelected(int timeSelected) {
+        this.timeSelected = timeSelected;
     }
 }
