@@ -63,7 +63,13 @@ public class ControllerViewLogs implements ActionListener{
                      String wordCountString = String.valueOf(selectedLog.getWordCount());
                      String timeString = String.valueOf(selectedLog.getTestDuration());
                      String handSelectString = selectedLog.getSelectedHand();
-                     int percentCorrect = (selectedLog.getCorrectWords() * 100) / selectedLog.getWordCount();
+                     int percentCorrect;
+                     try{
+                        percentCorrect = (selectedLog.getCorrectWords() * 100) / selectedLog.getWordCount();
+                     }catch(ArithmeticException exception){
+                        percentCorrect = 0;
+                     }
+                     
                      int percentIncorrect = 100 - percentCorrect;
                      
                      this.viewLog.getjTextNumberWords().setText(wordCountString);

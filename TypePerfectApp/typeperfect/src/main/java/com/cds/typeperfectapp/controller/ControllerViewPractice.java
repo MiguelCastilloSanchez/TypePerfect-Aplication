@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Random;
 import com.cds.typeperfectapp.model.*;
 import com.cds.typeperfectapp.views.*;
+import javax.swing.Timer;
 
 public class ControllerViewPractice implements ActionListener {
 
@@ -21,12 +22,17 @@ public class ControllerViewPractice implements ActionListener {
     private int correctWords = 0;
     private String handSelected;
     private int timeSelected;
+    private Timer countdownTimer;
+    private boolean isTimeFinished;
     
 
-    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener, String filePath) {
+    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener, String filePath, int countDownTime) {
         this.viewPractice = viewPractice;
         this.keyboardListener = keyboardListener;
         this.filepath = filePath;
+        this.countdownTimer = new Timer(countDownTime, this);
+        this.countdownTimer.setRepeats(false);
+
         setActionListenerToButtons();
         setListenersToTextField();
 
@@ -39,12 +45,19 @@ public class ControllerViewPractice implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
+        isTimeFinished = true;
+
         if (viewPractice.getButtonStart() == event.getSource()) {
             totalWords = 0;
             correctWords = 0;
             viewPractice.getButtonStop().setVisible(true);
             viewPractice.getLabelWordBefore().setVisible(true);
             viewPractice.getLabelUserWordBefore().setVisible(true);
+
+            this.countdownTimer.start();
+            this.isTimeFinished = false;
+            
+                
 
             wasStartPressed = true;
             viewPractice.getFieldPractice().requestFocus();
@@ -57,6 +70,8 @@ public class ControllerViewPractice implements ActionListener {
             enterPerformed(event);
         }
         if (viewPractice.getButtonStop() == event.getSource()) {
+            this.countdownTimer.stop();
+
             wasStartPressed = false;
             viewPractice.getButtonStop().setVisible(false);
             viewPractice.getLabelWordActual().setText("");
@@ -77,6 +92,12 @@ public class ControllerViewPractice implements ActionListener {
 
             resultsReader.updateResults(totalWords, correctWords);
         }
+        if(isTimeFinished && wasStartPressed){
+            wasStartPressed = false;
+            event.setSource(viewPractice.getButtonStop());
+            this.actionPerformed(event);
+        }
+        
     }
 
     private void setActionListenerToButtons() {
@@ -166,5 +187,9 @@ public class ControllerViewPractice implements ActionListener {
 
     public void setTimeSelected(int timeSelected) {
         this.timeSelected = timeSelected;
+    }
+
+    private void timeOut(){
+
     }
 }

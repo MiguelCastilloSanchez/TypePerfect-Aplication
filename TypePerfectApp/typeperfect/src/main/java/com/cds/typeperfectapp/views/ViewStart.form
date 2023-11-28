@@ -31,19 +31,20 @@
               <Component id="buttonExit" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="buttonPractice" min="-2" pref="112" max="-2" attributes="0"/>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
-              <Component id="buttonConfig" min="-2" pref="112" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="buttonLogs" min="-2" pref="112" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-              <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="buttonPractice" min="-2" pref="112" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="buttonLogs" min="-2" pref="112" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="82" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,7 +56,6 @@
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonPractice" alignment="3" min="-2" pref="75" max="-2" attributes="0"/>
-                  <Component id="buttonConfig" alignment="3" min="-2" pref="75" max="-2" attributes="0"/>
                   <Component id="buttonLogs" alignment="3" min="-2" pref="75" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="47" max="32767" attributes="0"/>
@@ -72,11 +72,6 @@
           <Font name="Yu Gothic UI Semilight" size="36" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="TypePerfect App"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="buttonConfig">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonExit">
