@@ -22,15 +22,11 @@ public class ControllerViewStart implements ActionListener{
     public void actionPerformed(ActionEvent event){
         if(this.view.getButtonExit() == event.getSource()){
             System.exit(0);
-        }else if(this.view.getButtonPractice() == event.getSource()){
-            this.view.dispose();
-            ViewPractice viewPractice = new ViewPractice();
-            KeyboardListener keyboardListener = new KeyboardListener();
-            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener,filePath);
-            controllerViewPractice.setHandSelected(handSelected);
+            
+        }
+        
 
-
-        }else if(this.view.getButtonConfig()== event.getSource()){
+        else if(this.view.getButtonPractice()== event.getSource()){
             this.view.dispose();
             ViewConfiguration viewConfiguration = new ViewConfiguration();
             WordsReader modelWordsReader = new WordsReader();
@@ -47,7 +43,6 @@ public class ControllerViewStart implements ActionListener{
     private void initializeView(){
         this.view.getButtonExit().addActionListener(this);
         this.view.getButtonPractice().addActionListener(this);
-        this.view.getButtonConfig().addActionListener(this);
         this.view.getButtonLogs().addActionListener(this);
     }
 

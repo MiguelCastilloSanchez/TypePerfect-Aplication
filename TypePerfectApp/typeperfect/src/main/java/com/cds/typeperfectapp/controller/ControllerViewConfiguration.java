@@ -6,12 +6,11 @@ import java.awt.event.ActionListener;
 import com.cds.typeperfectapp.views.*;
 import com.cds.typeperfectapp.model.*;
 
+import javax.swing.Timer;
+
 public class ControllerViewConfiguration implements ActionListener{
     private WordsReader modelWordsReader = new WordsReader();
     private ViewConfiguration viewConfiguration = new ViewConfiguration();
-    private ControllerViewPractice controllerViewPractice;
-    private ViewStart viewStart = new ViewStart();
-    private ControllerViewStart controllerViewStart = new ControllerViewStart(viewStart);
     private Boolean allButtonsSelected = false;
     private Boolean englishRight = false;
     private Boolean spanishRight = false;
@@ -45,32 +44,40 @@ public class ControllerViewConfiguration implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         checkSelection();
         if(e.getSource() == this.viewConfiguration.getButtonNext()){
-            this.controllerViewStart.setFilePath(filePath);
-            this.controllerViewStart.setHandSelected(handSelected);
-            System.out.println("Se ha guardado la configuración");
+           
+            
+            KeyboardListener keyboardListener = new KeyboardListener();
+            ViewPractice viewPractice = new ViewPractice(); 
+            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener, filePath, this.timeSelected);
+            this.viewConfiguration.setVisible(false);
+            this.viewConfiguration.dispose();
+            viewPractice.setVisible(true);
+           
         }
         if(e.getSource() == this.viewConfiguration.getButtonBack()){
             this.viewConfiguration.setVisible(false);
             this.viewConfiguration.dispose();
-            this.viewStart.setVisible(true);
+            ViewStart viewStart = new ViewStart();
+            ControllerViewStart controllerViewStart = new ControllerViewStart(viewStart);
         }
     }
 
-    public void checkSelection(){
+    private void checkSelection(){
           if(this.viewConfiguration.getGroupHands().getSelection() != null && this.viewConfiguration.getGroupLanguage().getSelection() != null && this.viewConfiguration.getGroupTime().getSelection() != null){
             allButtonsSelected = true;
             enableButtonNext();
             checkConfiguration();
+            chooseTime();
         }
     }
 
-    public void enableButtonNext(){
+    private void enableButtonNext(){
         if(allButtonsSelected == true){
             this.viewConfiguration.getButtonNext().setEnabled(true);
         }
     }
 
-    public void checkConfiguration(){
+    private void checkConfiguration(){
         if(this.viewConfiguration.getbuttonEn().isSelected() == true && this.viewConfiguration.getButtonBoth().isSelected() == true){
             this.englishBoth = true;
         }
@@ -93,7 +100,7 @@ public class ControllerViewConfiguration implements ActionListener{
 
     }
 
-    public void chooseWords(){
+    private void chooseWords(){
         if(this.englishBoth == true){
             this.filePath = "src/main/resources/words/BothHandsEnglish.txt";
             this.handSelected = "Ambas Manos";
@@ -119,5 +126,17 @@ public class ControllerViewConfiguration implements ActionListener{
             this.filePath = "src/main/resources/words/RightHand.txt";
             this.handSelected = "Mano Derecha";
         }
+    }
+
+    private void chooseTime(){
+        int thousand = 1000;
+        if(this.viewConfiguration.getButton30Seg().isSelected())
+            this.timeSelected = 30 * thousand;
+        
+        if(this.viewConfiguration.getButton1Min().isSelected())
+            this.timeSelected = 60 * thousand;
+
+        if(this.viewConfiguration.getButton5Min().isSelected())
+            this.timeSelected = 300 * thousand;
     }
 }

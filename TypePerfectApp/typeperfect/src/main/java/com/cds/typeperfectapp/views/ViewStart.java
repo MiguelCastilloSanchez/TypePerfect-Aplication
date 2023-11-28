@@ -24,7 +24,6 @@ public class ViewStart extends javax.swing.JFrame {
     private void initComponents() {
 
         labelTitle = new javax.swing.JLabel();
-        buttonConfig = new javax.swing.JButton();
         buttonExit = new javax.swing.JButton();
         buttonPractice = new javax.swing.JButton();
         buttonLogs = new javax.swing.JButton();
@@ -34,8 +33,6 @@ public class ViewStart extends javax.swing.JFrame {
 
         labelTitle.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 36)); // NOI18N
         labelTitle.setText("TypePerfect App");
-
-        buttonConfig.setText("Configuración");
 
         buttonExit.setText("Salir");
 
@@ -52,17 +49,16 @@ public class ViewStart extends javax.swing.JFrame {
                 .addComponent(buttonExit)
                 .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(buttonPractice, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(buttonConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(buttonLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(labelTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(buttonPractice, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(buttonLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(labelTitle)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +68,6 @@ public class ViewStart extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPractice, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(buttonExit)
@@ -117,13 +112,7 @@ public class ViewStart extends javax.swing.JFrame {
         });
     }
 
-    public JButton getButtonConfig() {
-        return buttonConfig;
-    }
-
-    public void setButtonConfig(JButton buttonConfig) {
-        this.buttonConfig = buttonConfig;
-    }
+    
 
     public JButton getButtonExit() {
         return buttonExit;
@@ -158,7 +147,6 @@ public class ViewStart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonConfig;
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonLogs;
     private javax.swing.JButton buttonPractice;
