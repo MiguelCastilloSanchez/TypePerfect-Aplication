@@ -18,7 +18,7 @@ public class ViewPractice extends javax.swing.JFrame {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         labelImage = new javax.swing.JLabel();
@@ -32,10 +32,11 @@ public class ViewPractice extends javax.swing.JFrame {
         labelWordActual = new javax.swing.JLabel();
         labelCorrectIcon = new javax.swing.JLabel();
         labelIncorrectIcon = new javax.swing.JLabel();
+        labelTimer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelImage.setIcon(new javax.swing.ImageIcon("src/main/resources/rsz_manos_en_el_teclado.jpg")); 
+        labelImage.setIcon(new javax.swing.ImageIcon("src/main/resources/rsz_manos_en_el_teclado.jpg")); // NOI18N
 
         buttonStop.setText("Parar");
 
@@ -108,22 +109,26 @@ public class ViewPractice extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonStart)
-                        .addGap(180, 180, 180)
-                        .addComponent(buttonStop)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonMenu)))
-                .addContainerGap(150, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonStart)
+                    .addComponent(buttonStop))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fieldPractice))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonMenu)
+                .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(271, 271, 271)
+                        .addComponent(labelTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,23 +136,33 @@ public class ViewPractice extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(buttonStart)
+                                .addGap(66, 66, 66)
+                                .addComponent(buttonStop)
+                                .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(buttonMenu)
+                                .addGap(144, 144, 144)))))
                 .addComponent(fieldPractice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonStart)
-                    .addComponent(buttonStop)
-                    .addComponent(buttonMenu))
-                .addGap(28, 28, 28))
+                .addComponent(labelTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartActionPerformed
+    private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonStartActionPerformed
+    }                                           
 
     /**
      * @param args the command line arguments
@@ -273,7 +288,17 @@ public class ViewPractice extends javax.swing.JFrame {
         this.labelWordBefore = labelWordBefore;
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    public JLabel getLabelTimer() {
+        return labelTimer;
+    }
+
+    public void setLabelTimer(JLabel labelTimer) {
+        this.labelTimer = labelTimer;
+    }
+    
+    
+
+    // Variables declaration - do not modify                     
     private javax.swing.JButton buttonMenu;
     private javax.swing.JButton buttonStart;
     private javax.swing.JButton buttonStop;
@@ -282,8 +307,9 @@ public class ViewPractice extends javax.swing.JFrame {
     private javax.swing.JLabel labelCorrectIcon;
     private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelIncorrectIcon;
+    private javax.swing.JLabel labelTimer;
     private javax.swing.JLabel labelUserWordBefore;
     private javax.swing.JLabel labelWordActual;
     private javax.swing.JLabel labelWordBefore;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

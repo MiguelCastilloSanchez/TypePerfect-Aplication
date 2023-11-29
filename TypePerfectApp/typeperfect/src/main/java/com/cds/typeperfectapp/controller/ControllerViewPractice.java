@@ -24,13 +24,18 @@ public class ControllerViewPractice implements ActionListener {
     private int timeSelected;
     private Timer countdownTimer;
     private boolean isTimeFinished;
+    private int remainingTime;
+    private Timer remainingTimer;
+    private int countDownTime;
     
 
     public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener, String filePath, int countDownTime) {
         this.viewPractice = viewPractice;
         this.keyboardListener = keyboardListener;
         this.filepath = filePath;
-        this.countdownTimer = new Timer(countDownTime, this);
+        this.countDownTime = countDownTime;
+        //Al timer se le da un tiempo adicional, esto para que el temporizador tenga tiempo para poder actualizarce a 00:00 una vez que termina la practica
+        this.countdownTimer = new Timer(this.countDownTime + 350, this);
         this.countdownTimer.setRepeats(false);
 
         setActionListenerToButtons();
@@ -58,6 +63,7 @@ public class ControllerViewPractice implements ActionListener {
 
             this.countdownTimer.start();
             this.isTimeFinished = false;
+            calculateRemainingTime(this.countDownTime);
             
                 
 
@@ -73,6 +79,7 @@ public class ControllerViewPractice implements ActionListener {
         }
         if (viewPractice.getButtonStop() == event.getSource()) {
             this.countdownTimer.stop();
+            this.remainingTimer.stop();
 
             wasStartPressed = false;
             viewPractice.getButtonStop().setVisible(false);
@@ -191,6 +198,37 @@ public class ControllerViewPractice implements ActionListener {
         this.timeSelected = timeSelected;
     }
 
-  
+    //Todos los tiempos se manejan en milisegundos
+    public void calculateRemainingTime(int miliSeconds) {
+    remainingTime = miliSeconds;
+
+    //Actualiza la etiqueta del temporizador inmediatamente, lo que evita que se muestre un segundo de retraso
+    viewPractice.getLabelTimer().setText("Tiempo restante: " + convertTime(remainingTime));
+
+    ActionListener actionListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (remainingTime <= 0) {
+                ((Timer) e.getSource()).stop();
+                viewPractice.getLabelTimer().setText("Tiempo restante: 00:00");
+            } else {
+                remainingTime -= 1000;
+                viewPractice.getLabelTimer().setText("Tiempo restante: " + convertTime(remainingTime));
+            }
+        }
+    };
+
+    this.remainingTimer = new Timer(1000, actionListener);
+    this.remainingTimer.start();
+}
+
+
+    public String convertTime(int miliSeconds) {
+        int minutes = miliSeconds / 60000;
+        int seconds = (miliSeconds % 60000) / 1000;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+    
+    
 
 }
