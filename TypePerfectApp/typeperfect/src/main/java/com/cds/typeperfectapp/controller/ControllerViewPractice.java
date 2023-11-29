@@ -45,7 +45,9 @@ public class ControllerViewPractice implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        isTimeFinished = true;
+        if(!countdownTimer.isRunning()){
+            isTimeFinished = true;
+        }
 
         if (viewPractice.getButtonStart() == event.getSource()) {
             totalWords = 0;
@@ -189,7 +191,6 @@ public class ControllerViewPractice implements ActionListener {
         this.timeSelected = timeSelected;
     }
 
-    private void timeOut(){
+  
 
-    }
 }
