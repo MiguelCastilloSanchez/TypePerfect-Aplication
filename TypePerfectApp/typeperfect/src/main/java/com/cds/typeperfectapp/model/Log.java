@@ -14,17 +14,11 @@ public class Log {
     private int testDuration; // Tiempo en segundos
     private int correctWords; 
     private int incorrectWords; 
-    private String selectedHand; 
-    private int wordsPerMinute;
-    
-    public Log(Date dateAndTime, int wordCount, int testDuration) {
-        this.dateAndTime = dateAndTime;
-        this.wordCount = wordCount;
-        this.testDuration = testDuration;
-    }
+    private HandSelect selectedHand; 
+    private Language language;
 
     public Log() {
-        
+        this.dateAndTime = new Date();
     }
 
     public int getTestNumber() {
@@ -33,14 +27,6 @@ public class Log {
 
     public void setTestNumber(int testNumber) {
         this.testNumber = testNumber;
-    }
-
-    public Date getDateAndTime() {
-        return dateAndTime;
-    }
-
-    public void setDateAndTime(Date dateAndTime) {
-        this.dateAndTime = dateAndTime;
     }
 
     public int getWordCount() {
@@ -75,20 +61,29 @@ public class Log {
         this.incorrectWords = incorrectWords;
     }
 
-    public String getSelectedHand() {
-        return selectedHand;
+    public String getSelectedHandString() {
+        return selectedHand.toString();
     }
 
-    public void setSelectedHand(String selectedHand) {
+    public void setSelectedHand(HandSelect selectedHand) {
         this.selectedHand = selectedHand;
     }
 
-    public int getWordsPerMinute() {
-        return wordsPerMinute;
+    public String getLanguageString() {
+        return language.toString();
     }
 
-    public void setWordsPerMinute(int wordsPerMinute) {
-        this.wordsPerMinute = wordsPerMinute;
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public Date getDateAndTime() {
+        return dateAndTime;
+    }
+
+    public void setDateAndTime(Date dateAndTime) {
+        this.dateAndTime = dateAndTime;
     }
     
+
 }

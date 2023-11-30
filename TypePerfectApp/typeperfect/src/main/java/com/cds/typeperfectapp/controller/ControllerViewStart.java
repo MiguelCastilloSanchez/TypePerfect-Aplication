@@ -9,9 +9,7 @@ import com.cds.typeperfectapp.views.*;
 
 public class ControllerViewStart implements ActionListener{
     private ViewStart view;
-    private String filePath = "src/main/resources/words/BothHands.txt";
-    private String handSelected = "Ambas Manos";
-    private int timeSelected;
+    
     public ControllerViewStart(ViewStart view) {
         this.view = view;
         this.view.setVisible(true);
@@ -25,15 +23,15 @@ public class ControllerViewStart implements ActionListener{
             
         }
         
-
-        else if(this.view.getButtonPractice()== event.getSource()){
+        if(this.view.getButtonPractice()== event.getSource()){
             this.view.dispose();
             ViewConfiguration viewConfiguration = new ViewConfiguration();
             WordsReader modelWordsReader = new WordsReader();
             ControllerViewConfiguration controllerViewConfiguration = new ControllerViewConfiguration(modelWordsReader,viewConfiguration);
 
-            
-        }else if(this.view.getButtonLogs() == event.getSource()){
+        }  
+        
+        if(this.view.getButtonLogs() == event.getSource()){
             this.view.dispose();
             ViewLogs viewLogs = new ViewLogs();
             ControllerViewLogs controllerViewLogs = new ControllerViewLogs(viewLogs);
@@ -44,20 +42,5 @@ public class ControllerViewStart implements ActionListener{
         this.view.getButtonExit().addActionListener(this);
         this.view.getButtonPractice().addActionListener(this);
         this.view.getButtonLogs().addActionListener(this);
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public void setHandSelected(String handSelected) {
-        this.handSelected = handSelected;
-    }
-
-    public void setTimeSelected(int timeSelected) {
-        this.timeSelected = timeSelected;
-    }
-
-    
-    
+    }  
 }

@@ -12,19 +12,12 @@ public class ControllerViewConfiguration implements ActionListener{
     private WordsReader modelWordsReader = new WordsReader();
     private ViewConfiguration viewConfiguration = new ViewConfiguration();
     private Boolean allButtonsSelected = false;
-    private Boolean englishRight = false;
-    private Boolean spanishRight = false;
-    private Boolean englishLeft = false;
-    private Boolean spanishLeft = false;
-    private Boolean englishBoth = false;
-    private Boolean spanishBoth = false;
-    private String filePath = "";
-    private String handSelected;
-    private int timeSelected;
+    private Configuration configuration;
 
     public ControllerViewConfiguration(WordsReader modelWordsReader, ViewConfiguration viewConfiguration){
         this.modelWordsReader = modelWordsReader;
         this.viewConfiguration = viewConfiguration;
+        this.configuration = new Configuration();
         this.viewConfiguration.setVisible(true);
         this.viewConfiguration.getButtonBack().addActionListener(this);
         this.viewConfiguration.getButtonNext().addActionListener(this);
@@ -44,11 +37,9 @@ public class ControllerViewConfiguration implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         checkSelection();
         if(e.getSource() == this.viewConfiguration.getButtonNext()){
-           
-            
             KeyboardListener keyboardListener = new KeyboardListener();
             ViewPractice viewPractice = new ViewPractice(); 
-            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener, filePath, this.timeSelected);
+            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener, this.configuration);
             this.viewConfiguration.setVisible(false);
             this.viewConfiguration.dispose();
             viewPractice.setVisible(true);
@@ -79,64 +70,73 @@ public class ControllerViewConfiguration implements ActionListener{
 
     private void checkConfiguration(){
         if(this.viewConfiguration.getbuttonEn().isSelected() == true && this.viewConfiguration.getButtonBoth().isSelected() == true){
-            this.englishBoth = true;
+            this.configuration.setHandSelect(HandSelect.BOTH);
+            this.configuration.setLanguage(Language.ENGLISH);
         }
         if(this.viewConfiguration.getbuttonEs().isSelected() == true && this.viewConfiguration.getButtonBoth().isSelected() == true){
-            this.spanishBoth = true;
+            this.configuration.setHandSelect(HandSelect.BOTH);
+            this.configuration.setLanguage(Language.SPANISH);
         }
         if(this.viewConfiguration.getbuttonEn().isSelected() == true && this.viewConfiguration.getButtonLeft().isSelected() == true){
-            this.englishLeft = true;
+            this.configuration.setHandSelect(HandSelect.LEFT);
+            this.configuration.setLanguage(Language.ENGLISH);
         }
         if(this.viewConfiguration.getbuttonEs().isSelected() == true && this.viewConfiguration.getButtonLeft().isSelected() == true){
-            this.spanishLeft = true;
+            this.configuration.setHandSelect(HandSelect.LEFT);
+            this.configuration.setLanguage(Language.SPANISH);
         }
         if(this.viewConfiguration.getbuttonEn().isSelected() == true && this.viewConfiguration.getButtonRight().isSelected() == true){
-            this.englishRight = true;
+            this.configuration.setHandSelect(HandSelect.RIGHT);
+            this.configuration.setLanguage(Language.ENGLISH);
         }
         if(this.viewConfiguration.getbuttonEs().isSelected() == true && this.viewConfiguration.getButtonRight().isSelected() == true){
-            this.spanishRight = true;
+            this.configuration.setHandSelect(HandSelect.RIGHT);
+            this.configuration.setLanguage(Language.SPANISH);
         }
         chooseWords();
 
     }
 
     private void chooseWords(){
-        if(this.englishBoth == true){
-            this.filePath = "src/main/resources/words/BothHandsEnglish.txt";
-            this.handSelected = "Ambas Manos";
-            
-        }
-        if(this.spanishBoth == true){
-            this.filePath = "src/main/resources/words/BothHands.txt";
-            this.handSelected = "Ambas Manos";
-        }
-        if(this.englishLeft == true){
-            this.filePath = "src/main/resources/words/LeftHandEnglish.txt";
-            this.handSelected = "Mano Izquierda";
-        }
-        if(this.spanishLeft == true){
-            this.filePath = "src/main/resources/words/LeftHand.txt";
-            this.handSelected = "Mano Izquierda";
-        }
-        if(this.englishRight == true){
-            this.filePath = "src/main/resources/words/RightHandEnglish.txt";
-             this.handSelected = "Mano Derecha";
-        }
-        if(this.spanishRight == true){
-            this.filePath = "src/main/resources/words/RightHand.txt";
-            this.handSelected = "Mano Derecha";
+        switch (this.configuration.getLanguage()){
+            case ENGLISH:
+                switch(this.configuration.getHandSelect()){
+                    case BOTH:
+                         this.configuration.setFilePath("src/main/resources/words/BothHandsEnglish.txt");
+                    break;
+                    case LEFT:
+                        this.configuration.setFilePath("src/main/resources/words/LeftHandEnglish.txt");
+                    break;
+                    case RIGHT:
+                        this.configuration.setFilePath("src/main/resources/words/RightHandEnglish.txt");
+                    break;
+                }
+                break;
+            case SPANISH:
+                switch(this.configuration.getHandSelect()){
+                    case BOTH:
+                         this.configuration.setFilePath("src/main/resources/words/BothHands.txt");
+                    break;
+                    case LEFT:
+                        this.configuration.setFilePath("src/main/resources/words/LeftHand.txt");
+                    break;
+                    case RIGHT:
+                        this.configuration.setFilePath("src/main/resources/words/RightHand.txt");
+                    break;
+                }
+                break;
         }
     }
 
     private void chooseTime(){
         int thousand = 1000;
         if(this.viewConfiguration.getButton30Seg().isSelected())
-            this.timeSelected = 30 * thousand;
+            this.configuration.setCountDownTime(30 * thousand);
         
         if(this.viewConfiguration.getButton1Min().isSelected())
-            this.timeSelected = 60 * thousand;
+            this.configuration.setCountDownTime(60 * thousand);
 
         if(this.viewConfiguration.getButton5Min().isSelected())
-            this.timeSelected = 300 * thousand;
+            this.configuration.setCountDownTime(300 * thousand);
     }
 }
