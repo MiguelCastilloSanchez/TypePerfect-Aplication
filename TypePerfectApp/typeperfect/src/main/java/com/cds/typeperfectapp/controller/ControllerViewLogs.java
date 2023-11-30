@@ -62,7 +62,8 @@ public class ControllerViewLogs implements ActionListener{
                      }
                      String wordCountString = String.valueOf(selectedLog.getWordCount());
                      String timeString = String.valueOf(selectedLog.getTestDuration());
-                     String handSelectString = selectedLog.getSelectedHand();
+                     String handSelectString = selectedLog.getSelectedHandString();
+                     String languageSelectString = selectedLog.getLanguageString();
                      int percentCorrect;
                      try{
                         percentCorrect = (selectedLog.getCorrectWords() * 100) / selectedLog.getWordCount();
@@ -73,11 +74,12 @@ public class ControllerViewLogs implements ActionListener{
                      int percentIncorrect = 100 - percentCorrect;
                      
                      this.viewLog.getjTextNumberWords().setText(wordCountString);
-                     this.viewLog.getjTextTestTime().setText(timeString);
+                     this.viewLog.getjTextTestTime().setText(timeString + " segundos");
                      this.viewLog.getjTextFieldHandSelect().setText(handSelectString);
                      this.viewLog.getjProgressBarRightWords().setValue(percentCorrect);
                      this.viewLog.getjProgressBarBadWords().setValue(percentIncorrect);
                      this.viewLog.getjTextFieldWordAccuracy().setText(String.valueOf(percentCorrect)); 
+                     this.viewLog.getjTextFieldLanguage().setText(languageSelectString);
                 }
             }
             this.updateTable(this.testList);

@@ -14,28 +14,24 @@ public class ControllerViewPractice implements ActionListener {
     private ViewPractice viewPractice;
     private KeyboardListener keyboardListener;
     private boolean wasStartPressed = false;
-    private String filepath;
+    private Configuration configuration;
     private Random random = new Random();
     private String[] listOfWords;
     private ResultsReader resultsReader = new ResultsReader();
     private int totalWords = 0;
     private int correctWords = 0;
-    private String handSelected;
-    private int timeSelected;
     private Timer countdownTimer;
     private boolean isTimeFinished;
     private int remainingTime;
     private Timer remainingTimer;
-    private int countDownTime;
     
 
-    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener, String filePath, int countDownTime) {
+    public ControllerViewPractice(ViewPractice viewPractice, KeyboardListener keyboardListener, Configuration configuration) {
         this.viewPractice = viewPractice;
         this.keyboardListener = keyboardListener;
-        this.filepath = filePath;
-        this.countDownTime = countDownTime;
+        this.configuration = configuration;
         //Al timer se le da un tiempo adicional, esto para que el temporizador tenga tiempo para poder actualizarce a 00:00 una vez que termina la practica
-        this.countdownTimer = new Timer(this.countDownTime + 350, this);
+        this.countdownTimer = new Timer(configuration.getCountDownTime() + 350, this);
         this.countdownTimer.setRepeats(false);
 
         setActionListenerToButtons();
@@ -45,7 +41,7 @@ public class ControllerViewPractice implements ActionListener {
 
         viewPractice.setVisible(true);
 
-        setListOfWords(filePath);
+        setListOfWords(configuration.getFilePath());
     }
 
     @Override
@@ -63,7 +59,7 @@ public class ControllerViewPractice implements ActionListener {
 
             this.countdownTimer.start();
             this.isTimeFinished = false;
-            calculateRemainingTime(this.countDownTime);
+            calculateRemainingTime(this.configuration.getCountDownTime());
             
                 
 
@@ -169,10 +165,16 @@ public class ControllerViewPractice implements ActionListener {
     }
 
     private void createNewLog(){
-        Log log = new Log(new Date(), totalWords, 60);
-            log.setCorrectWords(correctWords);
-            log.setIncorrectWords(totalWords-correctWords);
-            log.setSelectedHand(this.handSelected);
+        
+        int duration = (this.configuration.getCountDownTime() - this.remainingTime) / 1000;
+        Log log = new Log();
+        log.setWordCount(totalWords);
+        log.setCorrectWords(this.correctWords); 
+        log.setIncorrectWords(this.totalWords - this.correctWords);
+        log.setLanguage(this.configuration.getLanguage());
+        log.setSelectedHand(this.configuration.getHandSelect());
+        log.setTestDuration(duration);
+  
         DaoLogs daoLogs = new DaoLogs("src/main/resources/logs.txt");
         try {
             daoLogs.saveLog(log);
@@ -180,22 +182,6 @@ public class ControllerViewPractice implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getHandSelected() {
-        return handSelected;
-    }
-
-    public void setHandSelected(String handSelected) {
-        this.handSelected = handSelected;
-    }
-
-    public int getTimeSelected() {
-        return timeSelected;
-    }
-
-    public void setTimeSelected(int timeSelected) {
-        this.timeSelected = timeSelected;
     }
 
     //Todos los tiempos se manejan en milisegundos

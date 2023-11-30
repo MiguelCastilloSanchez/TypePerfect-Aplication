@@ -53,7 +53,12 @@ public class DaoLogs {
         for (Log log : logs) {
             idList.add(log.getTestNumber());
         }
-        int newID = idList.get(idList.size()-1)+1;
+        int newID;
+        if (!idList.isEmpty()) {
+            newID = idList.get(idList.size() - 1) + 1;
+        } else {
+            newID = 1; 
+        }
         return newID;
     }
 
@@ -90,8 +95,8 @@ public class DaoLogs {
        String testDuration = String.valueOf(log.getTestDuration());
        String correctWords = String.valueOf(log.getCorrectWords());
        String incorrectWords = String.valueOf(log.getIncorrectWords());
-       String selectedHand = log.getSelectedHand();
-       String wordsPerMinute = String.valueOf(log.getWordsPerMinute());
+       String selectedHand = log.getSelectedHandString();
+       String selectedLanguage = log.getLanguageString();
 
        String logTxt = testNumber + ","
                + dateAndTime + ","
@@ -100,7 +105,7 @@ public class DaoLogs {
                + correctWords + ","
                + incorrectWords + ","
                + selectedHand + ","
-               + wordsPerMinute;
+               + selectedLanguage;
        
        return logTxt;
    }
@@ -122,8 +127,8 @@ public class DaoLogs {
         log.setTestDuration(Integer.parseInt(parts[3])); 
         log.setCorrectWords(Integer.parseInt(parts[4]));
         log.setIncorrectWords(Integer.parseInt(parts[5]));
-        log.setSelectedHand(parts[6]);
-        log.setWordsPerMinute(Integer.parseInt(parts[7]));
+        log.setSelectedHand(HandSelect.valueOf(parts[6]));
+        log.setLanguage(Language.valueOf(parts[7]));
         
         return log;
     }
