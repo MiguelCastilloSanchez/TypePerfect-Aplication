@@ -6,19 +6,44 @@ import java.awt.event.ActionListener;
 import com.cds.typeperfectapp.views.*;
 import com.cds.typeperfectapp.model.*;
 
-import javax.swing.Timer;
-
-public class ControllerViewConfiguration implements ActionListener{
+public class ControllerViewConfiguration implements ActionListener {
     private WordsReader modelWordsReader = new WordsReader();
     private ViewConfiguration viewConfiguration = new ViewConfiguration();
     private Boolean allButtonsSelected = false;
-    private Configuration configuration;
+    private Configuration configuration = new Configuration();;
 
-    public ControllerViewConfiguration(WordsReader modelWordsReader, ViewConfiguration viewConfiguration){
+    public ControllerViewConfiguration(WordsReader modelWordsReader, ViewConfiguration viewConfiguration) {
         this.modelWordsReader = modelWordsReader;
         this.viewConfiguration = viewConfiguration;
-        this.configuration = new Configuration();
+
+        setActionListenerToButtons();
+
+        this.viewConfiguration.getButtonNext().setEnabled(false);
         this.viewConfiguration.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        checkSelection();
+        if (e.getSource() == this.viewConfiguration.getButtonNext()) {
+            KeyboardListener keyboardListener = new KeyboardListener();
+            ViewPractice viewPractice = new ViewPractice();
+            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener,
+                    this.configuration);
+            this.viewConfiguration.setVisible(false);
+            this.viewConfiguration.dispose();
+            viewPractice.setVisible(true);
+
+        }
+        if (e.getSource() == this.viewConfiguration.getButtonBack()) {
+            this.viewConfiguration.setVisible(false);
+            this.viewConfiguration.dispose();
+            ViewStart viewStart = new ViewStart();
+            ControllerViewStart controllerViewStart = new ControllerViewStart(viewStart);
+        }
+    }
+
+    private void setActionListenerToButtons() {
         this.viewConfiguration.getButtonBack().addActionListener(this);
         this.viewConfiguration.getButtonNext().addActionListener(this);
         this.viewConfiguration.getButton1Min().addActionListener(this);
@@ -29,32 +54,14 @@ public class ControllerViewConfiguration implements ActionListener{
         this.viewConfiguration.getButtonRight().addActionListener(this);
         this.viewConfiguration.getbuttonEn().addActionListener(this);
         this.viewConfiguration.getbuttonEs().addActionListener(this);
-        this.viewConfiguration.getButtonNext().setEnabled(false);
-         
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        checkSelection();
-        if(e.getSource() == this.viewConfiguration.getButtonNext()){
-            KeyboardListener keyboardListener = new KeyboardListener();
-            ViewPractice viewPractice = new ViewPractice(); 
-            ControllerViewPractice controllerViewPractice = new ControllerViewPractice(viewPractice, keyboardListener, this.configuration);
-            this.viewConfiguration.setVisible(false);
-            this.viewConfiguration.dispose();
-            viewPractice.setVisible(true);
-           
-        }
-        if(e.getSource() == this.viewConfiguration.getButtonBack()){
-            this.viewConfiguration.setVisible(false);
-            this.viewConfiguration.dispose();
-            ViewStart viewStart = new ViewStart();
-            ControllerViewStart controllerViewStart = new ControllerViewStart(viewStart);
-        }
-    }
+    private void checkSelection() {
+        boolean buttonHandsIsSelected = this.viewConfiguration.getGroupHands().getSelection() != null;
+        boolean buttonLanguageIsSelected = this.viewConfiguration.getGroupLanguage().getSelection() != null;
+        boolean buttonTimeIsSelected = this.viewConfiguration.getGroupTime().getSelection() != null;
 
-    private void checkSelection(){
-          if(this.viewConfiguration.getGroupHands().getSelection() != null && this.viewConfiguration.getGroupLanguage().getSelection() != null && this.viewConfiguration.getGroupTime().getSelection() != null){
+        if (buttonHandsIsSelected && buttonLanguageIsSelected && buttonTimeIsSelected) {
             allButtonsSelected = true;
             enableButtonNext();
             checkConfiguration();
@@ -62,81 +69,76 @@ public class ControllerViewConfiguration implements ActionListener{
         }
     }
 
-    private void enableButtonNext(){
-        if(allButtonsSelected == true){
+    private void enableButtonNext() {
+        if (allButtonsSelected == true) {
             this.viewConfiguration.getButtonNext().setEnabled(true);
         }
     }
 
-    private void checkConfiguration(){
-        if(this.viewConfiguration.getbuttonEn().isSelected() == true && this.viewConfiguration.getButtonBoth().isSelected() == true){
-            this.configuration.setHandSelect(HandSelect.BOTH);
-            this.configuration.setLanguage(Language.ENGLISH);
-        }
-        if(this.viewConfiguration.getbuttonEs().isSelected() == true && this.viewConfiguration.getButtonBoth().isSelected() == true){
-            this.configuration.setHandSelect(HandSelect.BOTH);
-            this.configuration.setLanguage(Language.SPANISH);
-        }
-        if(this.viewConfiguration.getbuttonEn().isSelected() == true && this.viewConfiguration.getButtonLeft().isSelected() == true){
-            this.configuration.setHandSelect(HandSelect.LEFT);
-            this.configuration.setLanguage(Language.ENGLISH);
-        }
-        if(this.viewConfiguration.getbuttonEs().isSelected() == true && this.viewConfiguration.getButtonLeft().isSelected() == true){
-            this.configuration.setHandSelect(HandSelect.LEFT);
-            this.configuration.setLanguage(Language.SPANISH);
-        }
-        if(this.viewConfiguration.getbuttonEn().isSelected() == true && this.viewConfiguration.getButtonRight().isSelected() == true){
-            this.configuration.setHandSelect(HandSelect.RIGHT);
-            this.configuration.setLanguage(Language.ENGLISH);
-        }
-        if(this.viewConfiguration.getbuttonEs().isSelected() == true && this.viewConfiguration.getButtonRight().isSelected() == true){
-            this.configuration.setHandSelect(HandSelect.RIGHT);
-            this.configuration.setLanguage(Language.SPANISH);
-        }
-        chooseWords();
+    private void checkConfiguration() {
+        HandSelect handSelect = HandSelect.LEFT;
+        Language languageSelect;
 
+        if (this.viewConfiguration.getbuttonEn().isSelected() == true) {
+            languageSelect = Language.ENGLISH;
+        } else {
+            languageSelect = Language.SPANISH;
+        }
+
+        if (this.viewConfiguration.getButtonBoth().isSelected() == true) handSelect = HandSelect.BOTH;
+        if (this.viewConfiguration.getButtonLeft().isSelected() == true) handSelect = HandSelect.LEFT;
+        if (this.viewConfiguration.getButtonRight().isSelected() == true) handSelect = HandSelect.RIGHT;
+
+        setConfiguration(handSelect, languageSelect);
+
+        chooseWords();
     }
 
-    private void chooseWords(){
-        switch (this.configuration.getLanguage()){
+    public void setConfiguration(HandSelect handSelect, Language language) {
+        this.configuration.setHandSelect(handSelect);
+        this.configuration.setLanguage(language);
+    }
+
+    private void chooseWords() {
+        switch (this.configuration.getLanguage()) {
             case ENGLISH:
-                switch(this.configuration.getHandSelect()){
+                switch (this.configuration.getHandSelect()) {
                     case BOTH:
-                         this.configuration.setFilePath("src/main/resources/words/BothHandsEnglish.txt");
-                    break;
+                        this.configuration.setFilePath("src/main/resources/words/BothHandsEnglish.txt");
+                        break;
                     case LEFT:
                         this.configuration.setFilePath("src/main/resources/words/LeftHandEnglish.txt");
-                    break;
+                        break;
                     case RIGHT:
                         this.configuration.setFilePath("src/main/resources/words/RightHandEnglish.txt");
-                    break;
+                        break;
                 }
                 break;
             case SPANISH:
-                switch(this.configuration.getHandSelect()){
+                switch (this.configuration.getHandSelect()) {
                     case BOTH:
-                         this.configuration.setFilePath("src/main/resources/words/BothHands.txt");
-                    break;
+                        this.configuration.setFilePath("src/main/resources/words/BothHands.txt");
+                        break;
                     case LEFT:
                         this.configuration.setFilePath("src/main/resources/words/LeftHand.txt");
-                    break;
+                        break;
                     case RIGHT:
                         this.configuration.setFilePath("src/main/resources/words/RightHand.txt");
-                    break;
+                        break;
                 }
                 break;
         }
     }
 
-    private void chooseTime(){
+    private void chooseTime() {
         int thousand = 1000;
-        if(this.viewConfiguration.getButton30Seg().isSelected())
+        if (this.viewConfiguration.getButton30Seg().isSelected())
             this.configuration.setCountDownTime(30 * thousand);
-        
-        if(this.viewConfiguration.getButton1Min().isSelected())
+
+        if (this.viewConfiguration.getButton1Min().isSelected())
             this.configuration.setCountDownTime(60 * thousand);
 
-        if(this.viewConfiguration.getButton5Min().isSelected())
+        if (this.viewConfiguration.getButton5Min().isSelected())
             this.configuration.setCountDownTime(300 * thousand);
     }
 }

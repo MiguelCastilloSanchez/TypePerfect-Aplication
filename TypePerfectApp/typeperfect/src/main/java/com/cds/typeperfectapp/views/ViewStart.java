@@ -1,9 +1,7 @@
-
 package com.cds.typeperfectapp.views;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 
 public class ViewStart extends javax.swing.JFrame {
 

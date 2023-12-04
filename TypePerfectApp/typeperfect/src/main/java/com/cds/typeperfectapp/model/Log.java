@@ -1,20 +1,15 @@
 package com.cds.typeperfectapp.model;
 
-
 import java.util.Date;
 
-/**
- *
- * @author Daniel Garcia
- */
 public class Log {
-    private int testNumber; 
-    private Date dateAndTime; 
-    private int wordCount; 
-    private int testDuration; // Tiempo en segundos
-    private int correctWords; 
-    private int incorrectWords; 
-    private HandSelect selectedHand; 
+    private int testNumber;
+    private Date dateAndTime;
+    private int wordCount;
+    private int testDuration;
+    private int correctWords;
+    private int incorrectWords;
+    private HandSelect selectedHand;
     private Language language;
 
     public Log() {
@@ -84,6 +79,5 @@ public class Log {
     public void setDateAndTime(Date dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
-    
 
 }

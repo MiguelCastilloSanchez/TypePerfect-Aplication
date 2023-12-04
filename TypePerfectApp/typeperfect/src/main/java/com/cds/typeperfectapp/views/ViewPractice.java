@@ -1,11 +1,9 @@
-
 package com.cds.typeperfectapp.views;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 
 public class ViewPractice extends javax.swing.JFrame {
 
@@ -18,7 +16,7 @@ public class ViewPractice extends javax.swing.JFrame {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         labelImage = new javax.swing.JLabel();
@@ -36,7 +34,7 @@ public class ViewPractice extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelImage.setIcon(new javax.swing.ImageIcon("src/main/resources/rsz_manos_en_el_teclado.jpg")); // NOI18N
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsz_manos_en_el_teclado.jpg"))); // NOI18N
 
         buttonStop.setText("Parar");
 
@@ -54,17 +52,17 @@ public class ViewPractice extends javax.swing.JFrame {
 
         labelUserWordBefore.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         labelUserWordBefore.setForeground(new java.awt.Color(102, 102, 102));
-        labelUserWordBefore.setText("");
+        labelUserWordBefore.setText("pool");
 
         labelWordBefore.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
-        labelWordBefore.setText("");
+        labelWordBefore.setText("pool");
 
         labelWordActual.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
-        labelWordActual.setText("");
+        labelWordActual.setText("pool");
 
-        labelCorrectIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/correct.png")); // NOI18N
+        labelCorrectIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/correct.png"))); // NOI18N
 
-        labelIncorrectIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/incorrect.png")); // NOI18N
+        labelIncorrectIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/incorrect.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,61 +106,61 @@ public class ViewPractice extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonStart)
-                    .addComponent(buttonStop))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fieldPractice))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonMenu)
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(48, Short.MAX_VALUE)
+                        .addComponent(labelImage))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(labelTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(buttonStart)
+                            .addComponent(buttonStop))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fieldPractice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonMenu)))
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addComponent(labelTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(buttonStart)
-                                .addGap(66, 66, 66)
+                                .addGap(68, 68, 68)
                                 .addComponent(buttonStop)
-                                .addGap(31, 31, 31))
+                                .addGap(54, 54, 54))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(buttonMenu)
-                                .addGap(144, 144, 144)))))
+                                .addGap(150, 150, 150)))))
                 .addComponent(fieldPractice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(labelTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(labelTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartActionPerformed
         // TODO add your handling code here:
-    }                                           
+    }//GEN-LAST:event_buttonStartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,7 +285,7 @@ public class ViewPractice extends javax.swing.JFrame {
     public void setLabelWordBefore(JLabel labelWordBefore) {
         this.labelWordBefore = labelWordBefore;
     }
-
+    
     public JLabel getLabelTimer() {
         return labelTimer;
     }
@@ -295,10 +293,8 @@ public class ViewPractice extends javax.swing.JFrame {
     public void setLabelTimer(JLabel labelTimer) {
         this.labelTimer = labelTimer;
     }
-    
-    
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonMenu;
     private javax.swing.JButton buttonStart;
     private javax.swing.JButton buttonStop;
@@ -311,5 +307,5 @@ public class ViewPractice extends javax.swing.JFrame {
     private javax.swing.JLabel labelUserWordBefore;
     private javax.swing.JLabel labelWordActual;
     private javax.swing.JLabel labelWordBefore;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

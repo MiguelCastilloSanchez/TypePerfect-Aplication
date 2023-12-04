@@ -15,7 +15,6 @@ public class ControllerViewResults implements ActionListener {
         this.viewResults = viewResults;
 
         setActionListenerToButtons();
-
         initializeView();
 
         viewResults.setVisible(true);
