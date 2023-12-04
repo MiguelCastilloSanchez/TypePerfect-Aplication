@@ -1,4 +1,3 @@
-
 package com.cds.typeperfectapp.views;
 
 import javax.swing.ButtonGroup;
@@ -6,7 +5,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
-
 
 public class ViewConfiguration extends javax.swing.JFrame {
     

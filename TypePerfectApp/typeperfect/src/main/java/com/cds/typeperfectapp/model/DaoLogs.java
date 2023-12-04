@@ -1,8 +1,4 @@
 package com.cds.typeperfectapp.model;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,13 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Daniel Garcia
- */
 public class DaoLogs {
-    
-    private String filePath; 
+
+    private String filePath;
 
     public DaoLogs(String filePath) {
         this.filePath = filePath;
@@ -31,22 +23,22 @@ public class DaoLogs {
         ArrayList<Log> logs = this.loadLogs();
         log.setTestNumber(createNewUniqueID());
         logs.add(log);
-        
+
         try (FileWriter fileWriter = new FileWriter(filePath, false);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
-            
-            for(Log registro : logs){
-                String logString = logToCsvString(registro);     
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
+            for (Log registro : logs) {
+                String logString = logToCsvString(registro);
                 bufferedWriter.write(logString);
                 bufferedWriter.newLine();
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private int createNewUniqueID() throws FileNotFoundException, IOException{
+    private int createNewUniqueID() throws FileNotFoundException, IOException {
         ArrayList<Log> logs = this.loadLogs();
         ArrayList<Integer> idList = new ArrayList<>();
 
@@ -57,7 +49,7 @@ public class DaoLogs {
         if (!idList.isEmpty()) {
             newID = idList.get(idList.size() - 1) + 1;
         } else {
-            newID = 1; 
+            newID = 1;
         }
         return newID;
     }
@@ -66,7 +58,7 @@ public class DaoLogs {
         ArrayList<Log> logs = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            while ((line = bufferedReader.readLine()) != null) {       
+            while ((line = bufferedReader.readLine()) != null) {
                 Log log = logFromCsvString(line);
                 logs.add(log);
             }
@@ -75,46 +67,46 @@ public class DaoLogs {
         }
         return logs;
     }
-    
+
     public Log findLogByTestNumber(int testNumber) throws IOException {
-    ArrayList<Log> logs = this.loadLogs();
+        ArrayList<Log> logs = this.loadLogs();
         for (Log log : logs) {
             if (log.getTestNumber() == testNumber) {
-                return log; 
+                return log;
             }
         }
-        return null; 
+        return null;
     }
 
     private String logToCsvString(Log log) {
-       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-       String testNumber = String.valueOf(log.getTestNumber());
-       String dateAndTime = dateFormat.format(log.getDateAndTime());
-       String wordCount = String.valueOf(log.getWordCount());
-       String testDuration = String.valueOf(log.getTestDuration());
-       String correctWords = String.valueOf(log.getCorrectWords());
-       String incorrectWords = String.valueOf(log.getIncorrectWords());
-       String selectedHand = log.getSelectedHandString();
-       String selectedLanguage = log.getLanguageString();
+        String testNumber = String.valueOf(log.getTestNumber());
+        String dateAndTime = dateFormat.format(log.getDateAndTime());
+        String wordCount = String.valueOf(log.getWordCount());
+        String testDuration = String.valueOf(log.getTestDuration());
+        String correctWords = String.valueOf(log.getCorrectWords());
+        String incorrectWords = String.valueOf(log.getIncorrectWords());
+        String selectedHand = log.getSelectedHandString();
+        String selectedLanguage = log.getLanguageString();
 
-       String logTxt = testNumber + ","
-               + dateAndTime + ","
-               + wordCount + ","
-               + testDuration + ","
-               + correctWords + ","
-               + incorrectWords + ","
-               + selectedHand + ","
-               + selectedLanguage;
-       
-       return logTxt;
-   }
+        String logTxt = testNumber + ","
+                + dateAndTime + ","
+                + wordCount + ","
+                + testDuration + ","
+                + correctWords + ","
+                + incorrectWords + ","
+                + selectedHand + ","
+                + selectedLanguage;
+
+        return logTxt;
+    }
 
     private Log logFromCsvString(String csvString) {
         // Convierte una cadena de texto en formato CSV a un objeto Log
         String[] parts = csvString.split(",");
         Log log = new Log();
-        
+
         log.setTestNumber(Integer.parseInt(parts[0]));
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -124,13 +116,13 @@ public class DaoLogs {
             e.printStackTrace();
         }
         log.setWordCount(Integer.parseInt(parts[2]));
-        log.setTestDuration(Integer.parseInt(parts[3])); 
+        log.setTestDuration(Integer.parseInt(parts[3]));
         log.setCorrectWords(Integer.parseInt(parts[4]));
         log.setIncorrectWords(Integer.parseInt(parts[5]));
         log.setSelectedHand(HandSelect.valueOf(parts[6]));
         log.setLanguage(Language.valueOf(parts[7]));
-        
+
         return log;
     }
-    
+
 }
