@@ -34,6 +34,51 @@
         </plugins>
     </build>
 
+    <profiles>
+     <profile>
+        <id>app</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version> <!-- O la versión que estés utilizando -->
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                        <finalName>typeperfect-app</finalName> <!-- Nombre del archivo JAR -->
+                        <appendAssemblyId>false</appendAssemblyId>
+                        <includeBaseDirectory>false</includeBaseDirectory>
+                        <archive>
+                            <manifest>
+                                <mainClass>com.cds.typeperfectapp.start.main</mainClass> <!-- Reemplaza con la ruta de tu clase principal -->
+                            </manifest>
+                        </archive>
+                        <fileSets>
+                            <fileSet>
+                                <directory>${project.build.directory}/dependency-jars</directory>
+                                <outputDirectory>/</outputDirectory>
+                                <includes>
+                                    <include>*.jar</include>
+                                </includes>
+                            </fileSet>
+                        </fileSets>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+    </profiles>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
